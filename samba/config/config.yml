@@ -1,0 +1,52 @@
+auth:
+  - user: aditya
+    group: staff
+    uid: 501
+    gid: 20
+    password: Adit2101
+  # - user: baz
+  #   group: xxx
+  #   uid: 1100
+  #   gid: 1200
+  #   password_file: /run/secrets/baz_password
+
+global:
+  - "force user = aditya"
+  - "force group = staff"
+
+share:
+  - name: data
+    comment: Data
+    path: /samba/data
+    browsable: yes
+    readonly: no
+    guestok: no
+    validusers: aditya
+    writelist: aditya
+    veto: no
+    hidefiles: /_*/
+    recycle: yes
+  # - name: share
+  #   path: /samba/share
+  #   browsable: yes
+  #   readonly: no
+  #   guestok: yes
+  #   writelist: foo
+  #   veto: no
+  # - name: foo
+  #   path: /samba/foo
+  #   browsable: yes
+  #   readonly: no
+  #   guestok: no
+  #   validusers: foo
+  #   writelist: foo
+  #   veto: no
+  #   hidefiles: /_*/
+  # - name: foo-baz
+  #   path: /samba/foo-baz
+  #   browsable: yes
+  #   readonly: no
+  #   guestok: no
+  #   validusers: foo,baz
+  #   writelist: foo,baz
+  #   veto: no

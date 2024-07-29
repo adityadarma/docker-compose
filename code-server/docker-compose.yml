@@ -1,0 +1,17 @@
+name: code-server
+
+services:
+  code-server:
+    image: lscr.io/linuxserver/code-server:latest
+    container_name: code-server
+    network_mode: internet
+    hostname: code_server
+    environment:
+      - TZ=Asia/Makassar
+      - DEFAULT_WORKSPACE=/project
+    volumes:
+      - ./config:/config
+      - /path-project:/project
+    ports:
+      - 8443:8443
+    restart: unless-stopped
