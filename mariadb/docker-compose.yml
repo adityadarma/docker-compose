@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  mariadb:
+    container_name: mariadb
+    image: arm64v8/mariadb:10.11
+    hostname: mariadb
+    environment:
+      - MARIADB_ROOT_PASSWORD=${DB_PASSWORD}
+      - TZ=Asia/Makassar
+    volumes:
+      - ./data:/var/lib/mysql
+    ports:
+      - 3306:3306
+    env_file:
+      - .env
+    restart: unless-stopped
+    network_mode: internet

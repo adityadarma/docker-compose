@@ -1,14 +1,21 @@
-name: postgres
+version: '3.8'
 
 services:
   postgres:
     container_name: postgres
-    image: docker.io/tensorchord/pgvecto-rs:pg14-v0.2.0@sha256:90724186f0a3517cf6914295b5ab410db9ce23190a2d9d0b9dd6463e3fa298f0
+    image: arm64v8/postgres:13-alpine
+    hostname: postgres
     environment:
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
-      POSTGRES_USER: ${DB_USERNAME}
-      POSTGRES_DB: ${DB_DATABASE_NAME}
-      POSTGRES_INITDB_ARGS: '--data-checksums'
+      - TZ=Asia/Makassar
+      - PGTZ=Asia/Makassar
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_USER=${DB_USERNAME}
+      - PGDATA=/var/lib/postgresql/data/pgdata
     volumes:
-      - ./data:/var/lib/postgresql/data
-    restart: always
+      - ./data:/var/lib/postgresql
+    ports:
+      - 5432:5432
+    env_file:
+      - .env
+    restart: unless-stopped
+    network_mode: internet

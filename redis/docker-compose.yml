@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  redis:
+    container_name: redis
+    image: arm64v8/redis:7.0-alpine
+    hostname: redis
+    environment:
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
+    volumes:
+      - ./data:/data
+    ports:
+      - 6379:6379
+    env_file:
+      - .env
+    restart: unless-stopped
+    network_mode: internet

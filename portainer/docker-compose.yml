@@ -1,10 +1,9 @@
-name: portainer
+version: '3.8'
 
 services:
   portainer:
-    image: portainer/portainer-ee:latest
     container_name: portainer
-    network_mode: internet
+    image: portainer/portainer-ee:latest
     hostname: portainer
     environment:
       - TZ=Asia/Makassar
@@ -14,3 +13,4 @@ services:
     ports:
       - 9000:9000
     restart: unless-stopped
+    network_mode: internet
