@@ -4,7 +4,7 @@ services:
   samba:
     container_name: samba
     image: crazymax/samba:latest
-    hostname: portainer
+    hostname: samba
     environment:
       - TZ=Asia/Makassar
       - SAMBA_LOG_LEVEL=1
@@ -16,4 +16,13 @@ services:
     ports:
       - 445:445
     restart: unless-stopped
-    network_mode: internet
+    network_mode: host
+
+  avahi:
+    container_name: samba_server
+    image: ydkn/avahi:latest
+    hostname: smb-server
+    volumes:
+      - ./avahi/services:/etc/avahi/services:ro
+    restart: unless-stopped
+    network_mode: host
