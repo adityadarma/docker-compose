@@ -1,4 +1,4 @@
-name: samba
+version: '3.8'
 
 services:
   samba:
@@ -8,13 +8,11 @@ services:
     environment:
       - TZ=Asia/Makassar
       - SAMBA_LOG_LEVEL=1
-    # volumes:
+    volumes:
       # - ./data:/data
       # - ./config/config.yml:/data/config.yml
-      # - /Users/aditya:/samba/data
+      - ./data:/samba/data
       # - /Users/aditya:/samba/share
-    ports:
-      - 445:445
     restart: unless-stopped
     network_mode: host
 
