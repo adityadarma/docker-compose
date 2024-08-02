@@ -1,0 +1,28 @@
+name: samba
+
+services:
+  samba:
+    container_name: samba
+    build: ./
+    hostname: samba
+    environment:
+      - TZ=Asia/Makassar
+      - SAMBA_LOG_LEVEL=1
+    # volumes:
+      # - ./data:/data
+      # - ./config/config.yml:/data/config.yml
+      # - /Users/aditya:/samba/data
+      # - /Users/aditya:/samba/share
+    ports:
+      - 445:445
+    restart: unless-stopped
+    network_mode: host
+
+  avahi:
+    container_name: samba_server
+    image: ydkn/avahi:latest
+    hostname: smb-server
+    volumes:
+      - ./avahi/services:/etc/avahi/services:ro
+    restart: unless-stopped
+    network_mode: host
