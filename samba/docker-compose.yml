@@ -2,17 +2,18 @@ name: samba
 
 services:
   samba:
-    image: crazymax/samba
     container_name: samba
-    network_mode: internet
+    image: crazymax/samba:latest
     hostname: portainer
     environment:
       - TZ=Asia/Makassar
-      - SAMBA_LOG_LEVEL=0
+      - SAMBA_LOG_LEVEL=1
     volumes:
       - ./data:/data
       - ./config/config.yml:/data/config.yml
       - /Users/aditya:/samba/data
+      - /Users/aditya:/samba/share
     ports:
       - 445:445
-    restart: always
+    restart: unless-stopped
+    network_mode: internet

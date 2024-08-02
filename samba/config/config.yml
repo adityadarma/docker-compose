@@ -1,18 +1,21 @@
 auth:
   - user: aditya
-    group: staff
-    uid: 501
-    gid: 20
+    group: root
+    uid: 1000
+    gid: 1000
     password: Adit2101
-  # - user: baz
-  #   group: xxx
-  #   uid: 1100
-  #   gid: 1200
-  #   password_file: /run/secrets/baz_password
+  - user: siwi
+    group: root
+    uid: 1100
+    gid: 1200
+    password: Siwi9596
 
 global:
-  - "force user = aditya"
-  - "force group = staff"
+  # - "force user = aditya"
+  # - "force group = root"
+  - wins support = yes
+  - local master = yes
+  - preferred master = yes
 
 share:
   - name: data
@@ -26,13 +29,13 @@ share:
     veto: no
     hidefiles: /_*/
     recycle: yes
-  # - name: share
-  #   path: /samba/share
-  #   browsable: yes
-  #   readonly: no
-  #   guestok: yes
-  #   writelist: foo
-  #   veto: no
+  - name: share
+    path: /samba/share
+    browsable: yes
+    readonly: no
+    guestok: yes
+    writelist: foo
+    veto: no
   # - name: foo
   #   path: /samba/foo
   #   browsable: yes
